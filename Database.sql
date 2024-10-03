@@ -1,12 +1,18 @@
+/* Introduction to SQL 					*/
+/* Script file for MySQL DBMS			*/
+/* This script file creates the following tables:	*/
+/* tblVendor, tblProduct, tblCustomer, tblInvoice, tblLine		*/
+/* and loads the default data rows			*/
+
 BEGIN;
-create DATABASE OnlineSales;
+create DATABASE if not exists OnlineSales;
 use OnlineSales;
 
 CREATE TABLE Customer (
     CustomerID INT AUTO_INCREMENT PRIMARY KEY,
     FirstName VARCHAR(100),
     LastName VARCHAR(100),
-    Email VARCHAR(255) UNIQUE,
+    Email VARCHAR(191) UNIQUE,
     Password VARCHAR(255),
     Phone VARCHAR(20),
     Address VARCHAR(255),
@@ -53,7 +59,7 @@ CREATE TABLE Product (
 );
 
 -- Create Order Table
-CREATE TABLE `Order` (
+CREATE TABLE CustomerOrders (
     OrderID INT AUTO_INCREMENT PRIMARY KEY,
     CustomerID INT,
     OrderDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -101,32 +107,46 @@ INSERT INTO Customer (FirstName, LastName, Email, Password, Phone, Address, City
 ('Emily', 'Davis', 'emily.davis@example.com', 'password111', '4444444444', '321 Birch Lane', 'Houston', '77001', 'USA'),
 ('David', 'Wilson', 'david.wilson@example.com', 'password222', '3333333333', '654 Cedar Court', 'Miami', '33101', 'USA');
 
--- Insert records into the Vendor table
-INSERT INTO Vendor (VendorName, ContactName, Phone, Email, Address, City, PostalCode, Country) VALUES
-('Ace Sports', 'Tom Parker', '1231231234', 'contact@acesports.com', '111 First Avenue', 'Boston', '02101', 'USA'),
-('ProGear', 'Linda Miller', '2342342345', 'sales@progear.com', '222 Second Street', 'Seattle', '98101', 'USA'),
-('Elite Athletics', 'Kevin Wright', '3453453456', 'support@eliteathletics.com', '333 Third Road', 'Denver', '80201', 'USA'),
-('Champion Gear', 'Sarah Green', '4564564567', 'info@championgear.com', '444 Fourth Blvd', 'Dallas', '75201', 'USA'),
-('TopPerformance', 'James Carter', '5675675678', 'contact@topperformance.com', '555 Fifth Avenue', 'San Francisco', '94101', 'USA');
+INSERT INTO Vendor (VendorID, VendorName, ContactName, Phone, Email, Address, City, PostalCode, Country) VALUES 
+(1, 'Speedy Footwear', 'John Runner', '123-456-7890', 'john.runner@speedyfootwear.com', '456 Sprint Avenue', 'San Francisco', '94103', 'USA'),
+(2, 'Marathon Gear', 'Jane Sprint', '987-654-3210', 'jane.sprint@marathongear.com', '789 Endurance Street', 'Los Angeles', '90001', 'USA'),
+(3, 'Power Fitness Supplies', 'Michael Johnson', '555-234-5678', 'm.johnson@powerfitness.com', '1234 Strength Lane', 'Chicago', '60601', 'USA'),
+(4, 'FitPro Equipment', 'Emily Davis', '111-222-3333', 'emily.davis@fitpro.com', '789 Muscle Blvd', 'New York', '10001', 'USA'),
+(5, 'Adventure Gear Co.', 'Sarah Hiker', '444-555-6666', 'sarah.hiker@adventuregear.com', '654 Mountain Path', 'Miami', '33101', 'USA'),
+(6, 'Trail Blazers', 'David White', '777-888-9999', 'david.white@trailblazers.com', '321 Forest Avenue', 'Houston', '77001', 'USA'),
+(7, 'Summit Outdoor', 'Paul Green', '555-666-7777', 'paul.green@summitoutdoor.com', '123 Peak Road', 'Denver', '80202', 'USA'),
+(8, 'Team Sports Gear', 'Linda Black', '888-999-0000', 'linda.black@teamsportsgear.com', '456 Champion Street', 'Seattle', '98101', 'USA'),
+(9, 'Pro Sports Equipment', 'Jessica Harris', '999-111-2222', 'jessica.harris@prosports.com', '789 Victory Plaza', 'Las Vegas', '89101', 'USA'),
+(10, 'AllStar Sports Supplies', 'Chris Moore', '111-333-5555', 'chris.moore@allstarsports.com', '321 Stadium Lane', 'Dallas', '75201', 'USA');
+
 
 -- Insert records into the Category table
-INSERT INTO Category (CategoryName, Description) VALUES
-('Running Shoes', 'Footwear designed for running and other athletic activities'),
-('Fitness Equipment', 'Tools and machines for physical training and exercise'),
-('Outdoor Gear', 'Equipment for outdoor sports and activities'),
-('Team Sports', 'Apparel and gear for team-based sports like soccer, basketball'),
-('Accessories', 'Sport accessories like gloves, belts, etc.');
+INSERT INTO Category (CategoryID, CategoryName, Description) VALUES
+(11, 'Running Shoes', 'Footwear designed for running and other athletic activities'),
+(22, 'Fitness Equipment', 'Tools and machines for physical training and exercise'),
+(33, 'Outdoor Gear', 'Equipment for outdoor sports and activities'),
+(44, 'Team Sports', 'Apparel and gear for team-based sports like soccer, basketball');
 
 -- Insert records into the Product table
 INSERT INTO Product (ProductName, Description, Price, CategoryID, VendorID, StockQuantity, ImageURL) VALUES
-('Nike Air Zoom Pegasus 38', 'Running shoes with responsive cushioning', 120.00, 1, 1, 50, 'nike_pegasus.jpg'),
-('Treadmill Pro-500', 'Advanced treadmill with multiple features', 800.00, 2, 2, 20, 'treadmill_pro500.jpg'),
-('Tent Explorer 3000', 'Durable tent for extreme outdoor conditions', 150.00, 3, 3, 35, 'tent_explorer3000.jpg'),
-('Adidas Basketball Jersey', 'Comfortable basketball jersey', 60.00, 4, 4, 100, 'adidas_jersey.jpg'),
-('Fitness Gloves', 'High-quality gloves for weight training', 25.00, 5, 5, 75, 'fitness_gloves.jpg');
+('Nike Air Zoom Pegasus 38', 'Running shoes with responsive cushioning', 120.00, 11, 1, 50, 'images/nike_pegasus.jpg'),
+('Treadmill Pro-500', 'Advanced treadmill with multiple features', 800.00, 22, 2, 20, 'images/treadmill_pro500.jpg'),
+('Tent Explorer 3000', 'Durable tent for extreme outdoor conditions', 150.00, 33, 3, 35, 'images/tent_explorer3000.jpg'),
+('Adidas Basketball Jersey', 'Comfortable basketball jersey', 60.00, 44, 8, 100, 'images/adidas_jersey.jpg'),
+('Nike Air Max', 'High-performance running shoes', 130.00, 11, 2, 50, 'images/nike_air_max.jpg'),
+('Adidas Ultraboost', 'Comfortable running shoes with excellent cushioning', 180.00, 11, 2, 30, 'images/adidas_ultraboost.jpg'),
+('Fitness Gloves', 'High-quality gloves for weight training', 25.00, 22, 3, 75, 'images/fitness_gloves.jpg'),
+('Under Armour HOVR Phantom', 'Lightweight running shoes with energy return', 150.00, 11, 1, 40, 'images/under_armour_hovr.jpg'),
+('ProForm 505 CST Treadmill', 'Compact treadmill for home workouts', 600.00, 22, 2, 25, 'images/proform_505_cst.jpg'),
+('Hydration Backpack', 'Stay hydrated on your outdoor adventures', 40.00, 33, 5, 60, 'images/hydration_backpack.jpg'),
+('Soccer Cleats', 'Durable cleats for optimal performance on the field', 70.00, 11, 8, 80, 'images/soccer_cleats.jpg'),
+('Resistance Bands Set', 'Versatile bands for strength training', 35.00, 22, 3, 50, 'images/resistance_bands.jpg'),
+('Hiking Backpack', 'Spacious backpack for hiking trips', 90.00, 33, 6, 30, 'images/hiking_backpack.jpg');
+
+
 
 -- Insert records into the Order table
-INSERT INTO `Order` (CustomerID, TotalAmount, ShippingAddress, City, PostalCode, Country, Status, PaymentMethod, PaymentStatus) VALUES
+INSERT INTO CustomerOrders (CustomerID, TotalAmount, ShippingAddress, City, PostalCode, Country, Status, PaymentMethod, PaymentStatus) VALUES
 (1, 150.00, '123 Elm Street', 'New York', '10001', 'USA', 'Shipped', 'Credit Card', 'Paid'),
 (2, 85.00, '456 Oak Avenue', 'Los Angeles', '90001', 'USA', 'Pending', 'PayPal', 'Paid'),
 (3, 275.00, '789 Pine Road', 'Chicago', '60601', 'USA', 'Delivered', 'Credit Card', 'Paid'),
