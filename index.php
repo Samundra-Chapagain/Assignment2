@@ -1,147 +1,137 @@
-<?php
-include_once 'database.php'; // Include the database connection file
-
-// Start the session to store user login information
-session_start();
-
-// Define variables and set to empty values
-$email = $password = "";
-$emailErr = $passwordErr = $loginErr = "";
-
-// Check if the form is submitted
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Sanitize and validate input data
-    $email = trim($_POST["email"]);
-    $password = trim($_POST["password"]);
-
-    // Basic validation
-    if (empty($email)) {
-        $emailErr = "Email is required";
-    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $emailErr = "Invalid email format";
-    }
-    if (empty($password)) {
-        $passwordErr = "Password is required";
-    }
-
-    // If no validation errors, proceed with checking credentials
-    if (empty($emailErr) && empty($passwordErr)) {
-        open_connection(); // Open the database connection
-
-        // Prepare an SQL statement to fetch the customer with the given email
-        $stmt = $conn->prepare("SELECT CustomerID, FirstName, LastName, Email, Password FROM Customer WHERE Email = ?");
-        $stmt->bind_param("s", $email);
-        $stmt->execute();
-        $result = $stmt->get_result();
-
-        // Check if a customer with the provided email exists
-        if ($result->num_rows == 1) {
-            // Fetch the customer data
-            $customer = $result->fetch_assoc();
-
-            // Verify the provided password with the hashed password from the database
-            if (password_verify($password, $customer['Password'])) {
-                // If password is correct, store user data in the session
-                $_SESSION['customer_id'] = $customer['CustomerID'];
-                $_SESSION['customer_name'] = $customer['FirstName'] . " " . $customer['LastName'];
-
-                // Redirect the user to a protected page (e.g., dashboard.php)
-                header("Location: dashboard.php");
-                exit();
-            } else {
-                $loginErr = "Invalid email or password";
-            }
-        } else {
-            $loginErr = "Invalid email or password";
-        }
-
-        $stmt->close(); // Close the statement
-        close_connection(); // Close the database connection
-    }
-}
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Admin Dashboard</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            padding: 20px;
+            background-image: url('../images/adminbackground.jpg'); /* Path to the background image */
+            background-size: cover;  /* Ensures the image covers the entire page */
+            background-position: center; /* Centers the background image */
+            background-repeat: no-repeat; /* Prevents the background image from repeating */
+            background-attachment: fixed; /* Fixes the background image in place when scrolling */
+            margin: 0;
+            padding: 0;
+            color: black; /* Sets default text color */
         }
-        .form-container {
-            max-width: 500px;
-            margin: 0 auto;
-            background-color: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        h2 {
+
+        /* Navbar Styling */
+        nav {
+            background-color: rgba(0, 0, 0, 0.9); /* Darker transparent background */
+            padding: 10px;
             text-align: center;
         }
-        .form-group {
-            margin-bottom: 15px;
+
+        nav a {
+            color: white;
+            margin-right: 20px;
+            text-decoration: none;
+            font-size: 16px;
         }
-        label {
-            display: block;
+
+        nav a:hover {
+            background-color: rgba(255, 255, 255, 0.2); /* Adds a hover effect */
+            padding: 10px;
+            border-radius: 4px;
+        }
+
+        /* Main Container */
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            margin-top: 20px;
+        }
+
+        /* Heading */
+        h1 {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        /* Tiles Grid Layout */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* 2 columns */
+            grid-gap: 20px;
+            margin-top: 30px;
+        }
+
+        /* Tile Styling */
+        .tile {
+            background-color: white; /* White background */
+            padding: 40px; /* Increased padding for larger tiles */
+            text-align: center;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            color: black; /* Black text */
+            font-size: 20px; /* Slightly larger text */
             font-weight: bold;
         }
-        input[type="email"], input[type="password"] {
-            width: 100%;
-            padding: 10px;
-            margin-top: 5px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
+
+        .tile:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2); /* Add more shadow on hover */
         }
-        .error {
-            color: red;
-            font-size: 0.9em;
-        }
-        .submit-btn {
-            display: block;
-            width: 100%;
-            padding: 10px;
-            background-color: #007bff;
+
+        /* Logout Button */
+        .logout-btn {
+            float: right;
+            background-color: red;
             color: white;
-            border: none;
+            padding: 10px;
+            text-decoration: none;
             border-radius: 4px;
-            font-size: 16px;
-            cursor: pointer;
+            margin-right: 20px;
         }
-        .submit-btn:hover {
-            background-color: #0056b3;
-        }
-        .register-link {
-            text-align: center;
-            margin-top: 15px;
+
+        .logout-btn:hover {
+            background-color: darkred;
         }
     </style>
 </head>
 <body>
 
-<div class="form-container">
-    <h2>Login</h2>
-    <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-        <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" name="email" id="email" value="<?php echo htmlspecialchars($email); ?>">
-            <span class="error"><?php echo $emailErr; ?></span>
-        </div>
-        <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" name="password" id="password">
-            <span class="error"><?php echo $passwordErr; ?></span>
-        </div>
-        <span class="error"><?php echo $loginErr; ?></span>
-        <button type="submit" class="submit-btn">Login</button>
-    </form>
-    <div class="register-link">
-        Don't have an account? <a href="registration.php">Register here</a>.
+<!-- Navbar -->
+<nav>
+    <a href="admindashboard.php">Home</a>
+    <a href="customers.php">Customers</a>
+    <a href="orders.php">Orders</a>
+    <a href="products.php">Products</a>
+    <a href="vendors.php">Vendors</a>
+    <?php if (isset($_SESSION['customer_id'])): ?>
+        <a href="?logout=true" class="logout-btn">Logout</a> <!-- Logout button -->
+    <?php else: ?>
+        <a href="../login.php">Logout</a>
+    <?php endif; ?>
+</nav>
+
+<div class="container">
+    <h1>Online Sales Management System</h1>
+
+    <!-- Grid Layout for Tiles -->
+    <div class="grid">
+        <!-- Customers Tile -->
+        <a href="customers.php" class="tile">
+            <span>Customers</span>
+        </a>
+
+        <!-- Orders Tile -->
+        <a href="orders.php" class="tile">
+            <span>Orders</span>
+        </a>
+
+        <!-- Products Tile -->
+        <a href="products.php" class="tile">
+            <span>Products</span>
+        </a>
+
+        <!-- Vendors Tile -->
+        <a href="vendors.php" class="tile">
+            <span>Vendors</span>
+        </a>
     </div>
 </div>
 
