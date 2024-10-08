@@ -10,5 +10,5 @@ if (isset($_GET['logout'])) {
 }
 
 // Include the HTML layout file
-include 'dashboard_template.html';
+include 'index.html';
 ?>
