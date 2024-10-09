@@ -1,4 +1,0 @@
-﻿syntax = "proto3";
-
-option csharp_namespace = "S5_A2";
-
