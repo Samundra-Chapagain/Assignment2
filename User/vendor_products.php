@@ -7,17 +7,17 @@ session_start();
 // Open database connection
 open_connection();
 
-// Check if 'category_id' is passed in the URL
-if (isset($_GET['category_id'])) {
-    $category_id = intval($_GET['category_id']); // Sanitize the input
+// Check if 'vendor_id' is passed in the URL
+if (isset($_GET['vendor_id'])) {
+    $vendor_id = intval($_GET['vendor_id']); // Sanitize the input
 
-    // Fetch products related to the category
-    $sql_products = "SELECT * FROM Product WHERE CategoryID = $category_id";
+    // Fetch products related to the vendor
+    $sql_products = "SELECT * FROM Product WHERE VendorID = $vendor_id";
     $products = select_rows($sql_products);
 } else {
-    // If no category_id is set, fetch all products (optional)
+    // If no vendor_id is set, show an error message
     $products = [];
-    echo "<p style='color: red;'>Error: No category selected. Please go back and select a category.</p>";
+    echo "<p style='color: red;'>Error: No vendor selected. Please go back and select a vendor.</p>";
 }
 
 // Close the database connection
@@ -29,7 +29,7 @@ close_connection();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Products</title>
+    <title>Vendor Products</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -148,7 +148,7 @@ close_connection();
         <a href="about.php">About Us</a>
     </div>
 
-    <h1>Products</h1>
+    <h1>Vendor Products</h1>
 
     <?php if (count($products) > 0): ?>
         <div class="product-grid">
@@ -169,7 +169,7 @@ close_connection();
             <?php endforeach; ?>
         </div>
     <?php else: ?>
-        <p>No products found for this category.</p>
+        <p>No products found for this vendor.</p>
     <?php endif; ?>
 </div>
 
