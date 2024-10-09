@@ -46,7 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $_SESSION['customer_name'] = $customer['FirstName'] . " " . $customer['LastName'];
 
                 // Redirect the user to a protected page (e.g., dashboard.php)
-                header("Location: dashboard.php");
+                header("Location: User/userdashboard.php");
                 exit();
             } else {
                 $loginErr = "Invalid email or password";
