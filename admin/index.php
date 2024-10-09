@@ -1,3 +1,18 @@
+<?php
+// Start the session to handle user login information
+session_start(); 
+
+// Include the database connection file
+include '../database.php'; // Adjust the path to your actual database connection
+
+// Logout functionality
+if (isset($_GET['logout'])) {
+    session_destroy(); // Destroy the session
+    header("Location: ../login.php"); // Redirect to login page
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -89,6 +104,80 @@
 
         .logout-btn:hover {
             background-color: darkred;
+        }
+
+        /* General Body Styling */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f8fb;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Form Styling */
+        .form-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #e7f1fb;
+            border-radius: 10px;
+            padding: 40px;
+            max-width: 400px;
+            margin: auto;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            margin-top: 100px;
+        }
+
+        /* Input fields styling */
+        .box {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 25px;
+            background-color: #fff;
+            color: #333;
+            font-size: 14px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .box:focus {
+            outline: none;
+            border-color: #85b8e3;
+        }
+
+        /* Button Styling */
+        .btn {
+            display: inline-block;
+            background-color: #5c9bd8;
+            color: #fff;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            text-align: center;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .btn:hover {
+            background-color: #468ac1;
+        }
+
+        /* Product and Card Styling (Rounded Rectangle Elements) */
+        .card {
+            background-color: #fff;
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin: 20px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .card:hover {
+            box-shadow: 0 8px 12px rgba(0,0,0,0.15);
         }
     </style>
 </head>
