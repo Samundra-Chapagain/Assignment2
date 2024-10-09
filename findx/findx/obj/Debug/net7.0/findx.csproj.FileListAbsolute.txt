@@ -1,0 +1,15 @@
+/Users/nayanpandeya/Projects/findx/findx/bin/Debug/net7.0/findx
+/Users/nayanpandeya/Projects/findx/findx/bin/Debug/net7.0/findx.deps.json
+/Users/nayanpandeya/Projects/findx/findx/bin/Debug/net7.0/findx.runtimeconfig.json
+/Users/nayanpandeya/Projects/findx/findx/bin/Debug/net7.0/findx.dll
+/Users/nayanpandeya/Projects/findx/findx/bin/Debug/net7.0/findx.pdb
+/Users/nayanpandeya/Projects/findx/findx/obj/Debug/net7.0/findx.csproj.AssemblyReference.cache
+/Users/nayanpandeya/Projects/findx/findx/obj/Debug/net7.0/findx.GeneratedMSBuildEditorConfig.editorconfig
+/Users/nayanpandeya/Projects/findx/findx/obj/Debug/net7.0/findx.AssemblyInfoInputs.cache
+/Users/nayanpandeya/Projects/findx/findx/obj/Debug/net7.0/findx.AssemblyInfo.cs
+/Users/nayanpandeya/Projects/findx/findx/obj/Debug/net7.0/findx.csproj.CoreCompileInputs.cache
+/Users/nayanpandeya/Projects/findx/findx/obj/Debug/net7.0/findx.dll
+/Users/nayanpandeya/Projects/findx/findx/obj/Debug/net7.0/refint/findx.dll
+/Users/nayanpandeya/Projects/findx/findx/obj/Debug/net7.0/findx.pdb
+/Users/nayanpandeya/Projects/findx/findx/obj/Debug/net7.0/findx.genruntimeconfig.cache
+/Users/nayanpandeya/Projects/findx/findx/obj/Debug/net7.0/ref/findx.dll

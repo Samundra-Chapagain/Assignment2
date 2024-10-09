@@ -1,0 +1,5 @@
+/Users/nayanpandeya/Projects/first C/obj/Debug/net7.0/first C.csproj.AssemblyReference.cache
+/Users/nayanpandeya/Projects/first C/obj/Debug/net7.0/first C.GeneratedMSBuildEditorConfig.editorconfig
+/Users/nayanpandeya/Projects/first C/obj/Debug/net7.0/first C.AssemblyInfoInputs.cache
+/Users/nayanpandeya/Projects/first C/obj/Debug/net7.0/first C.AssemblyInfo.cs
+/Users/nayanpandeya/Projects/first C/obj/Debug/net7.0/first C.csproj.CoreCompileInputs.cache

@@ -1,0 +1,27 @@
+﻿<Properties StartupConfiguration="{EFF75550-4056-442A-9A92-C65EA36A1847}|Default">
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.S5_220A2 PreferredExecutionTarget="MonoDevelop.Default" FirstBuild="True" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="S5 A2/protobuf.proto">
+    <Files>
+      <File FileName="S5 A2/EmptyClass.cs" Line="5" Column="3" />
+      <File FileName="S5 A2/new.cs" Line="1" Column="1" />
+      <File FileName="S5 A2/protobuf.proto" Line="1" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="S5 A2" expanded="True">
+            <Node name="S5 A2" expanded="True">
+              <Node name="protobuf.proto" selected="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

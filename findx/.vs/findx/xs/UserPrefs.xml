@@ -1,0 +1,25 @@
+﻿<Properties StartupConfiguration="{B775F533-C2C3-49D3-990B-26261674C2AC}|Default">
+  <MonoDevelop.Ide.ItemProperties.findx PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.Workbench ActiveDocument="../first C/first C/Program.cs">
+    <Files>
+      <File FileName="../first C/first C/Program.cs" Line="57" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="findx" expanded="True">
+            <Node name="findx" expanded="True">
+              <Node name="ConnectedServicesFolder" selected="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+</Properties>

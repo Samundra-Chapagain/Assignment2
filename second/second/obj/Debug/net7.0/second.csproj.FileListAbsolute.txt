@@ -1,0 +1,15 @@
+/Users/nayanpandeya/Projects/second/second/bin/Debug/net7.0/second
+/Users/nayanpandeya/Projects/second/second/bin/Debug/net7.0/second.deps.json
+/Users/nayanpandeya/Projects/second/second/bin/Debug/net7.0/second.runtimeconfig.json
+/Users/nayanpandeya/Projects/second/second/bin/Debug/net7.0/second.dll
+/Users/nayanpandeya/Projects/second/second/bin/Debug/net7.0/second.pdb
+/Users/nayanpandeya/Projects/second/second/obj/Debug/net7.0/second.csproj.AssemblyReference.cache
+/Users/nayanpandeya/Projects/second/second/obj/Debug/net7.0/second.GeneratedMSBuildEditorConfig.editorconfig
+/Users/nayanpandeya/Projects/second/second/obj/Debug/net7.0/second.AssemblyInfoInputs.cache
+/Users/nayanpandeya/Projects/second/second/obj/Debug/net7.0/second.AssemblyInfo.cs
+/Users/nayanpandeya/Projects/second/second/obj/Debug/net7.0/second.csproj.CoreCompileInputs.cache
+/Users/nayanpandeya/Projects/second/second/obj/Debug/net7.0/second.dll
+/Users/nayanpandeya/Projects/second/second/obj/Debug/net7.0/refint/second.dll
+/Users/nayanpandeya/Projects/second/second/obj/Debug/net7.0/second.pdb
+/Users/nayanpandeya/Projects/second/second/obj/Debug/net7.0/second.genruntimeconfig.cache
+/Users/nayanpandeya/Projects/second/second/obj/Debug/net7.0/ref/second.dll
